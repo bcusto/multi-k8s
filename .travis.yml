@@ -3,21 +3,21 @@ services:
   - docker
 
 before_install:
-  - docker build -t bcusto/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t benjamincusto/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true bcusto/react-test npm test -- --coverage
+  - docker run -e CI=true benjamincusto/react-test npm test -- --coverage
 
 after_success:
-  - docker build -t bcusto/multi-client ./client
-  - docker build -t bcusto/multi-nginx ./nginx
-  - docker build -t bcusto/multi-server ./server
-  - docker build -t bcusto/multi-worker ./worker
+  - docker build -t benjamincusto/multi-client ./client
+  - docker build -t benjamincusto/multi-nginx ./nginx
+  - docker build -t benjamincusto/multi-server ./server
+  - docker build -t benjamincusto/multi-worker ./worker
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  - docker push bcusto/multi-client
-  - docker push bcusto/multi-nginx
-  - docker push bcusto/multi-server
-  - docker push bcusto/multi-worker
+  - docker push benjamincusto/multi-client
+  - docker push benjamincusto/multi-nginx
+  - docker push benjamincusto/multi-server
+  - docker push benjamincusto/multi-worker
 
 
 
