@@ -9,15 +9,15 @@ script:
   - docker run -e CI=true benjamincusto/react-test npm test -- --coverage
 
 after_success:
-  - docker build -t benjamincusto/multi-client ./client
-  - docker build -t benjamincusto/multi-nginx ./nginx
-  - docker build -t benjamincusto/multi-server ./server
-  - docker build -t benjamincusto/multi-worker ./worker
+  - docker build -t multi-client ./client
+  - docker build -t multi-nginx ./nginx
+  - docker build -t multi-server ./server
+  - docker build -t /multi-worker ./worker
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  - docker push benjamincusto/multi-client
-  - docker push benjamincusto/multi-nginx
-  - docker push benjamincusto/multi-server
-  - docker push benjamincusto/multi-worker
+  - docker push multi-client
+  - docker push multi-nginx
+  - docker push multi-server
+  - docker push multi-worker
 
 
 
